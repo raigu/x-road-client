@@ -7,18 +7,16 @@ Useful for communicating over X-road using PSR-7 compatible third-party librarie
 
 ```php
 <?php
-$request = XRoadSoapRequestBuilder::create()
-    ->withSecurityServer('')
+
+$request = XRoadRequestBuilder::create()
     ->withService('')
-    ->withClient('')
     ->withBody()
+    ->withClient('')
     ->build();
 
 $securityServer = XRoadSecurityServer::create($url);
 
-$response = $securityServer->ask($request);
+$response = $securityServer->process($request);
 
-$response = XRoadSoapResponse::create($response);
-
-$response->serviceResponse(); 
+$response->body();
 ```
