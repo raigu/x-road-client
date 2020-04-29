@@ -20,11 +20,19 @@ final class XRoadServiceResponse
             'Body'
         );
 
-        foreach ($elements->item(0)->childNodes as $node) {
-            if ($node->nodeType === XML_ELEMENT_NODE) {
-                return $dom->saveXML($node);
-            }
+        //@see https://stackoverflow.com/a/42994559/1412737
+        $xpath = new \DOMXpath($dom);
+        $firstElementChild = $xpath->evaluate('./*[1]', $elements->item(0))[0];
+
+        if ($firstElementChild->namespaceURI) {
+            $firstElementChild->setAttributeNS(
+                'http://www.w3.org/2000/xmlns/',
+                'xmlns:' . $firstElementChild->prefix,
+                $firstElementChild->namespaceURI
+            );
         }
+
+        return $dom->saveXml($firstElementChild);
     }
 
     public static function create(ResponseInterface $response)
