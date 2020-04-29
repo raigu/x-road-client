@@ -1,0 +1,13 @@
+{
+    "name": "raigu/x-road-client",
+    "description": "PHP library for making X-Road requests",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rait Kapp",
+            "email": "3442567+raigu@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
