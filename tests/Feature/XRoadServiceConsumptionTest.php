@@ -1,11 +1,11 @@
 <?php
 
-namespace Raigu\Test;
+namespace Raigu\Test\Feature;
 
 use PHPUnit\Framework\TestCase;
 use Raigu\XRoad\XRoadSecurityServer;
 
-class XRoadServiceConsumptionFeatureTest extends TestCase
+class XRoadServiceConsumptionTest extends TestCase
 {
     /**
      * @test

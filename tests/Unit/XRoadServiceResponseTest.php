@@ -1,6 +1,6 @@
 <?php
 
-namespace Raigu\Test;
+namespace Raigu\Test\Unit;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;

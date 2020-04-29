@@ -1,6 +1,6 @@
 <?php
 
-namespace Raigu\Test;
+namespace Raigu\Test\Unit;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;

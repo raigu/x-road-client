@@ -3,7 +3,7 @@
 namespace Raigu\XRoad;
 
 use Psr\Http\Client\ClientInterface;
-use Raigu\Test\SoapResponseStub;
+use Raigu\Test\Unit\SoapResponseStub;
 
 final class XRoadSecurityServer
 {
