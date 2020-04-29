@@ -9,6 +9,11 @@
             "email": "3442567+raigu@users.noreply.github.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Raigu\\XRoad\\": "src/"
+        }
+    },
     "require": {
         "php": "^7.2",
         "psr/http-message": "^1.0"
