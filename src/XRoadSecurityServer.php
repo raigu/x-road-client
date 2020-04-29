@@ -3,7 +3,6 @@
 namespace Raigu\XRoad;
 
 use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\MessageInterface;
 use Raigu\Test\SoapResponseStub;
 
 final class XRoadSecurityServer
@@ -27,7 +26,7 @@ final class XRoadSecurityServer
         return new self($url, new NoneClient);
     }
 
-    public function process(MessageInterface $request): XRoadServiceResponse
+    public function process(string $soapEnvelope): XRoadServiceResponse
     {
         return new XRoadServiceResponse(SoapResponseStub::success());
     }
