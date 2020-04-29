@@ -9,9 +9,9 @@ Useful for communicating over X-road using PSR-7 compatible third-party librarie
 <?php
 
 $request = XRoadRequestBuilder::create()
-    ->withService('')
     ->withBody()
     ->withClient('')
+    ->withUserId('')
     ->build();
 
 $securityServer = XRoadSecurityServer::create($url);

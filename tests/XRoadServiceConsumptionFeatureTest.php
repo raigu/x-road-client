@@ -1,8 +1,10 @@
 <?php
 
+namespace Raigu\Test;
+
 use PHPUnit\Framework\TestCase;
+use Raigu\XRoad\XRoadRequestBuilder;
 use Raigu\XRoad\XRoadSecurityServer;
-use Raigu\XRoad\XRoadSoapRequestBuilder;
 
 class XRoadServiceConsumptionFeatureTest extends TestCase
 {
@@ -11,13 +13,13 @@ class XRoadServiceConsumptionFeatureTest extends TestCase
      */
     public function library_allows_to_consume_X_Road_service()
     {
-        $request = XRoadSoapRequestBuilder::create()
+        $request = XRoadRequestBuilder::create()
             ->withService('')
             ->withClient('')
             ->withBody('')
             ->build();
 
-        $securityServer = XRoadSecurityServer::create('http://www.neti.ee');
+        $securityServer = XRoadSecurityServer::create('http://test.ee');
 
         $response = $securityServer->process($request);
 

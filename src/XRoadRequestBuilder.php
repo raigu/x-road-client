@@ -2,7 +2,9 @@
 
 namespace Raigu\XRoad;
 
-final class XRoadSoapRequestBuilder
+use Psr\Http\Message\RequestInterface;
+
+final class XRoadRequestBuilder
 {
 
     public function withService(string $service): self
@@ -20,9 +22,9 @@ final class XRoadSoapRequestBuilder
         return new self();
     }
 
-    public function build(): \Psr\Http\Message\MessageInterface
+    public function build(): RequestInterface
     {
-        return new InMemoryPsr7Message;
+        return new Request;
     }
 
     public static function create(): self

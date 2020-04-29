@@ -14,11 +14,19 @@
             "Raigu\\XRoad\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+           "Raigu\\Test\\": "tests/"
+        }
+    },
     "require": {
         "php": "^7.2",
-        "psr/http-message": "^1.0"
+        "ext-dom": "*",
+        "psr/http-message": "^1.0",
+        "psr/http-client": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "=8"
+        "phpunit/phpunit": "=8",
+        "nyholm/psr7": "^1.2"
     }
 }
