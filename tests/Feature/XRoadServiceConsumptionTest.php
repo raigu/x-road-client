@@ -3,6 +3,7 @@
 namespace Raigu\Test\Feature;
 
 use PHPUnit\Framework\TestCase;
+use Raigu\XRoad\SoapEnvelopeBuilder;
 use Raigu\XRoad\XRoadSecurityServer;
 
 class XRoadServiceConsumptionTest extends TestCase
@@ -12,13 +13,12 @@ class XRoadServiceConsumptionTest extends TestCase
      */
     public function end_application_can_consume_X_Road_service()
     {
+        $envelope = SoapEnvelopeBuilder::stub()
+            ->build();
+
         $securityServer = XRoadSecurityServer::create('http://test.ee');
 
-        $response = $securityServer->process(
-            file_get_contents(
-                __DIR__ . '/request-envelope.xml'
-            )
-        );
+        $response = $securityServer->process($envelope);
 
         $this->assertIsString($response->asStr());
     }

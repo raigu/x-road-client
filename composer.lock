@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "875f6fa4326b329269586ceae24016a9",
+    "content-hash": "416827d5ac67fd6973bbcd2dc0639659",
     "packages": [
         {
             "name": "psr/http-client",
@@ -104,6 +104,46 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
+            "name": "raigu/x-road-soap-envelope-builder",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raigu/x-road-soap-envelope-builder.git",
+                "reference": "c978a497b4a979890bd3bfa93967834d1cd3c743"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raigu/x-road-soap-envelope-builder/zipball/c978a497b4a979890bd3bfa93967834d1cd3c743",
+                "reference": "c978a497b4a979890bd3bfa93967834d1cd3c743",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Raigu\\XRoad\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rait Kapp",
+                    "email": "3442567+raigu@users.noreply.github.com"
+                }
+            ],
+            "description": "PHP library for generating X-Road SOAP envelope.",
+            "time": "2020-04-28T10:39:33+00:00"
         }
     ],
     "packages-dev": [
@@ -1744,7 +1784,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-dom": "*"
     },
     "platform-dev": []
 }
