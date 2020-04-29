@@ -16,14 +16,9 @@ final class XRoadSecurityServer
      */
     private $client;
 
-    public function withHttpClient(ClientInterface $client): self
+    public static function create(string $url, ClientInterface $client): self
     {
-        return new self($this->url, $client);
-    }
-
-    public static function create(string $url): self
-    {
-        return new self($url, new NoneClient);
+        return new self($url, $client);
     }
 
     public function process(string $soapEnvelope): XRoadServiceResponse
