@@ -23,7 +23,14 @@ final class XRoadSecurityServer
 
     public function process(string $soapEnvelope): XRoadServiceResponse
     {
-        return new XRoadServiceResponse(SoapResponseStub::success());
+         $request = SoapEnvelopeAsPsr7Request::create(
+           $this->url,
+           $soapEnvelope
+        );
+
+        $response = $this->client->sendRequest($request);
+
+        return Psr7ResponseAsXRoadServiceResponse::create($response);
     }
 
     private function __construct(string $url, ClientInterface $client)

@@ -1,50 +1,26 @@
 <?php
 
+
 namespace Raigu\XRoad;
 
-use Psr\Http\Message\ResponseInterface;
-
-final class XRoadServiceResponse
+/**
+ * I am a response of X-Road service provider.
+ *
+ * I contain only the raw information service provider sent.
+ * I do not contain X-Road infrastructure specific information.
+ *
+ * I am useful for end applications who are interested only
+ * in service provider response and do not want to be
+ * distracted by other X-Road meta data information.
+ *
+ * For example if service provider sends response using SOAP
+ * then I will take the Body content. I will discard all
+ * Header information.
+ */
+interface XRoadServiceResponse
 {
     /**
-     * @var ResponseInterface
+     * @return string the raw response sent by service provider over X-road
      */
-    private $response;
-
-    public function asStr(): string
-    {
-        $dom = new \DOMDocument;
-        $dom->loadXML($this->response->getBody()->getContents());
-        $elements = $dom->getElementsByTagNameNS(
-            'http://schemas.xmlsoap.org/soap/envelope/',
-            'Body'
-        );
-
-        //@see https://stackoverflow.com/a/42994559/1412737
-        $xpath = new \DOMXpath($dom);
-        $firstElementChild = $xpath->evaluate('./*[1]', $elements->item(0))[0];
-
-        if ($firstElementChild->namespaceURI) {
-            $firstElementChild->setAttributeNS(
-                'http://www.w3.org/2000/xmlns/',
-                'xmlns:' . $firstElementChild->prefix,
-                $firstElementChild->namespaceURI
-            );
-        }
-
-        return $dom->saveXml($firstElementChild);
-    }
-
-    public static function create(ResponseInterface $response)
-    {
-        return new self($response);
-    }
-
-    /**
-     * XRoadServiceResponse constructor.
-     */
-    public function __construct(ResponseInterface $response)
-    {
-        $this->response = $response;
-    }
+    public function asStr(): string;
 }

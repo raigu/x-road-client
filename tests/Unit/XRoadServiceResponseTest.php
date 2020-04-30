@@ -4,7 +4,7 @@ namespace Raigu\Test\Unit;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use Raigu\XRoad\XRoadServiceResponse;
+use Raigu\XRoad\SoapEnvelopeAsXRoadServiceResponse;
 
 final class XRoadServiceResponseTest extends TestCase
 {
@@ -26,7 +26,7 @@ EOD
                 )
             );
 
-        $sut = XRoadServiceResponse::create($response);
+        $sut = SoapEnvelopeAsXRoadServiceResponse::create($response);
 
         $dom = new DOMDocument;
         $dom->loadXML($sut->asStr());
@@ -55,7 +55,7 @@ EOD
                 )
             );
 
-        $sut = XRoadServiceResponse::create($response);
+        $sut = SoapEnvelopeAsXRoadServiceResponse::create($response);
 
         $this->assertStringStartsWith(
             '<ts1:testServiceResponse xmlns:ts1="http://test.x-road.fi/producer"',
