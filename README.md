@@ -1,3 +1,9 @@
+[![Latest Stable Version](https://poser.pugx.org/raigu/x-road-client/v/stable)](https://packagist.org/packages/raigu/x-road-soap-envelope-builder)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![build](https://github.com/raigu/x-road-client/workflows/build/badge.svg)
+[![codecov](https://codecov.io/gh/raigu/x-road-client/branch/master/graph/badge.svg)](https://codecov.io/gh/raigu/x-road-soap-envelope-builder)
+
+
 PHP library for consuming X-Road services using third-party HTTP [PSR-18](https://www.php-fig.org/psr/psr-18/) 
 or [PSR-7](https://www.php-fig.org/psr/psr-7/) compatible libraries.
 
