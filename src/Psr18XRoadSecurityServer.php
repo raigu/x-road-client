@@ -16,11 +16,6 @@ final class Psr18XRoadSecurityServer implements XRoadSecurityServer
      */
     private $client;
 
-    public static function create(string $url, ClientInterface $client): self
-    {
-        return new self($url, $client);
-    }
-
     public function process(string $soapEnvelope): XRoadServiceResponse
     {
         $factory = Psr7RequestFactory::default();
@@ -43,6 +38,19 @@ final class Psr18XRoadSecurityServer implements XRoadSecurityServer
         }
 
         return Psr7ResponseAsXRoadServiceResponse::create($response);
+    }
+
+    public static function default(string $url): self
+    {
+        return self::create(
+            $url,
+            DefaultHttpClient::create()
+        );
+    }
+
+    public static function create(string $url, ClientInterface $client): self
+    {
+        return new self($url, $client);
     }
 
     private function __construct(string $url, ClientInterface $client)
