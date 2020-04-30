@@ -52,12 +52,11 @@ echo $response->asStr();
 
 The input of security server instance is plain SOAP envelope meeting the [X-Road Message requirements](https://www.x-tee.ee/docs/live/xroad/pr-mess_x-road_message_protocol.html#e1-request). 
 You can create it by yourself or use a builder which hides the SOAP logic and asks only X-road service related information.
-The builder `\Raigu\XRoad\SoapEnvelopeBuilder` taken from package [raigu/x-road-soap-envelope-builder](\Raigu\XRoad\SoapEnvelopeBuilder).
+The builder `\Raigu\XRoad\SoapEnvelopeBuilder` is taken from package [raigu/x-road-soap-envelope-builder](\Raigu\XRoad\SoapEnvelopeBuilder).
 Please see the package documentation for more information about how to use this builder.
 
 ## Error handling
 
-As long as the security server instance receives proper response for service provider it returns it.
 Proper response means that service provider received request, processed and returned the response backed into
 X-Road (SOAP) message. 
 
