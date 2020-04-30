@@ -3,7 +3,6 @@
 namespace Raigu\Test\Feature;
 
 use PHPUnit\Framework\TestCase;
-use Raigu\XRoad\NoneClient;
 use Raigu\XRoad\SoapEnvelopeBuilder;
 use Raigu\XRoad\XRoadSecurityServer;
 
