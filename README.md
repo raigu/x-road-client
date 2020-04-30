@@ -91,3 +91,7 @@ class GuzzleAdapter implements \Psr\Http\Client\ClientInterface
     }
 }
 ```
+
+# License
+
+Licensed under [MIT](LICENSE)
