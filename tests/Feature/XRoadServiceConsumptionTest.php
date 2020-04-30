@@ -4,7 +4,7 @@ namespace Raigu\Test\Feature;
 
 use PHPUnit\Framework\TestCase;
 use Raigu\XRoad\SoapEnvelopeBuilder;
-use Raigu\XRoad\XRoadSecurityServer;
+use Raigu\XRoad\Psr18XRoadSecurityServer;
 
 class XRoadServiceConsumptionTest extends TestCase
 {
@@ -16,7 +16,7 @@ class XRoadServiceConsumptionTest extends TestCase
         $envelope = SoapEnvelopeBuilder::stub()
             ->build();
 
-        $securityServer = XRoadSecurityServer::create(
+        $securityServer = Psr18XRoadSecurityServer::create(
             'http://test.ee',
             new HttpClientStub
         );

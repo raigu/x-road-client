@@ -23,7 +23,7 @@ EOD
 
 $envelope = $builder->build();
 
-$securityServer = \Raigu\XRoad\XRoadSecurityServer::create(
+$securityServer = \Raigu\XRoad\Psr18XRoadSecurityServer::create(
     'http://test.ee',
     new HttpClientStub
 );
