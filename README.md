@@ -46,6 +46,8 @@ $response = $securityServer->process($envelope);
 echo $response->asStr();
 ```
 
+If you want to play with this library before using it then there is a [demo application](https://github.com/raigu/x-road-client-demo) using local X-Road test server in docker container.
+
 # Developer documentation
 
 ## X-Road request construction
