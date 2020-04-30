@@ -2,19 +2,20 @@
 
 namespace Raigu\XRoad;
 
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
+use Raigu\Test\Unit\InMemoryStream;
 
 final class SoapEnvelopeAsXRoadServiceResponse implements XRoadServiceResponse
 {
     /**
-     * @var ResponseInterface
+     * @var StreamInterface
      */
-    private $response;
+    private $envelope;
 
     public function asStr(): string
     {
         $dom = new \DOMDocument;
-        $dom->loadXML($this->response->getBody()->getContents());
+        $dom->loadXML($this->envelope->getContents());
         $elements = $dom->getElementsByTagNameNS(
             'http://schemas.xmlsoap.org/soap/envelope/',
             'Body'
@@ -35,16 +36,18 @@ final class SoapEnvelopeAsXRoadServiceResponse implements XRoadServiceResponse
         return $dom->saveXml($firstElementChild);
     }
 
-    public static function create(ResponseInterface $response)
+    public static function fromStream(StreamInterface $stream): self
     {
-        return new self($response);
+        return new self($stream);
     }
 
-    /**
-     * XRoadServiceResponse constructor.
-     */
-    public function __construct(ResponseInterface $response)
+    public static function create(string $envelope)
     {
-        $this->response = $response;
+        return new self(InMemoryStream::create($envelope));
+    }
+
+    public function __construct(StreamInterface $envelope)
+    {
+        $this->envelope = $envelope;
     }
 }
