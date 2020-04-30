@@ -1,6 +1,6 @@
 {
-    "name": "raigu/x-road-client",
-    "description": "PHP library for making X-Road requests",
+    "name": "raigu/xroad-psr18-client",
+    "description": "PHP library for making X-Road requests using PSR-18 libraries",
     "type": "library",
     "license": "MIT",
     "authors": [

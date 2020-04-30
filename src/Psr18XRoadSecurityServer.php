@@ -30,6 +30,9 @@ final class Psr18XRoadSecurityServer implements XRoadSecurityServer
 
         $response = $this->client->sendRequest($request);
 
+        $validation = SoapFaultExcluded::create($response);
+        $validation->validate();
+
         $code = $response->getStatusCode();
         if ($code < 200 or 299 < $code) {
             throw new Exception(

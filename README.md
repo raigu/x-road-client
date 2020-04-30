@@ -1,13 +1,9 @@
-DRAFT - DRAFT - DRAFT
-
-Useful for communicating over X-road using PSR-7 compatible third-party libraries.
-
+PHP library for consuming X-Road services using third-party HTTP PSR-18 compatible libraries.
 
 # Usage
 
 ```php
 <?php
-
 
 $builder = \Raigu\XRoad\SoapEnvelopeBuilder::create()
     ->withService('EE/GOV/70008440/rr/RR437/v1')
