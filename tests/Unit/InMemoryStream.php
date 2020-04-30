@@ -13,7 +13,7 @@ final class InMemoryStream implements StreamInterface
 
     public function __toString()
     {
-
+        return $this->content;
     }
 
     public function close()

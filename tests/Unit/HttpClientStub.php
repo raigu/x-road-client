@@ -1,11 +1,10 @@
 <?php
 
-namespace Raigu\Test\Feature;
+namespace Raigu\Test\Unit;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Raigu\Test\Unit\SoapResponseStub;
 
 final class HttpClientStub implements ClientInterface
 {

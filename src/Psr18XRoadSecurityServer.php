@@ -2,6 +2,7 @@
 
 namespace Raigu\XRoad;
 
+use Exception;
 use Psr\Http\Client\ClientInterface;
 
 final class Psr18XRoadSecurityServer implements XRoadSecurityServer
@@ -22,12 +23,20 @@ final class Psr18XRoadSecurityServer implements XRoadSecurityServer
 
     public function process(string $soapEnvelope): XRoadServiceResponse
     {
-         $request = SoapEnvelopeAsPsr7Request::create(
-           $this->url,
-           $soapEnvelope
+        $request = SoapEnvelopeAsPsr7Request::create(
+            $this->url,
+            $soapEnvelope
         );
 
         $response = $this->client->sendRequest($request);
+
+        $code = $response->getStatusCode();
+        if ($code < 200 or 299 < $code) {
+            throw new Exception(
+                'Did not return proper response from X-Road Security server. ' .
+                'Expecting HTTP Status code 2xx, actual ' . $code
+            );
+        }
 
         return Psr7ResponseAsXRoadServiceResponse::create($response);
     }

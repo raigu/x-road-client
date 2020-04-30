@@ -11,6 +11,10 @@ final class SoapResponseStub implements ResponseInterface
      * @var StreamInterface
      */
     private $body;
+    /**
+     * @var int
+     */
+    private $statusCode;
 
     public function getProtocolVersion()
     {
@@ -69,7 +73,7 @@ final class SoapResponseStub implements ResponseInterface
 
     public function getStatusCode()
     {
-
+        return $this->statusCode;
     }
 
     public function withStatus($code, $reasonPhrase = '')
@@ -85,6 +89,7 @@ final class SoapResponseStub implements ResponseInterface
     public static function success(): self
     {
         return new self(
+            200,
             InMemoryStream::create(<<<EOD
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
     <SOAP-ENV:Header/>
@@ -97,8 +102,9 @@ EOD
         );
     }
 
-    private function __construct(StreamInterface $body)
+    private function __construct(int $statusCode, StreamInterface $body)
     {
         $this->body = $body;
+        $this->statusCode = $statusCode;
     }
 }
