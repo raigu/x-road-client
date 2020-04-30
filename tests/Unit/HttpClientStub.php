@@ -10,6 +10,6 @@ final class HttpClientStub implements ClientInterface
 {
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        return SoapResponseStub::success();
+        return SoapResponseStubFactory::success();
     }
 }

@@ -23,7 +23,8 @@ final class Psr18XRoadSecurityServer implements XRoadSecurityServer
 
     public function process(string $soapEnvelope): XRoadServiceResponse
     {
-        $request = SoapEnvelopeAsPsr7Request::create(
+        $factory = Psr7RequestFactory::default();
+        $request = $factory->fromSoapEnvelope(
             $this->url,
             $soapEnvelope
         );

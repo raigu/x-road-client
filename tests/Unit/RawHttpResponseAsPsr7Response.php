@@ -62,10 +62,12 @@ final class RawHttpResponseAsPsr7Response implements ResponseInterface
     public function getBody()
     {
         // @source https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html
-        $p = strpos($this->response,"\r\n\r\n");
+        $p = strpos($this->response, "\r\n\r\n");
 
-        return InMemoryStream::create(
-            substr($this->response, $p+4)
+        $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+
+        return $psr17Factory->createStream(
+            substr($this->response, $p + 4)
         );
     }
 

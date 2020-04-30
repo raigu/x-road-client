@@ -13,7 +13,9 @@ final class SoapFaultExcluded
 
     public function validate(): void
     {
-        $body = $this->response->getBody()->getContents();
+        $stream = $this->response->getBody();
+        $stream->rewind();
+        $body = $stream->getContents();
         if (strpos($body, ":Fault") !== false) {
             $dom = new \DOMDocument;
             $dom->loadXML($body);
