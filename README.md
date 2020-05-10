@@ -54,7 +54,7 @@ If you want to play with this library before using it then there is a [demo appl
 
 The input of security server instance is plain SOAP envelope meeting the [X-Road Message requirements](https://www.x-tee.ee/docs/live/xroad/pr-mess_x-road_message_protocol.html#e1-request). 
 You can create it by yourself or use a builder which hides the SOAP logic and asks only X-road service related information.
-The builder `\Raigu\XRoad\SoapEnvelopeBuilder` is taken from package [raigu/x-road-soap-envelope-builder](\Raigu\XRoad\SoapEnvelopeBuilder).
+The builder `\Raigu\XRoad\SoapEnvelopeBuilder` is taken from package [raigu/x-road-soap-envelope-builder](https://github.com/raigu/x-road-soap-envelope-builder).
 Please see the package documentation for more information about how to use this builder.
 
 ## Error handling
