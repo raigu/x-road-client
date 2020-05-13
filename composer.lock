@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2217c328a9ec023ec45354e4a7f0ac13",
+    "content-hash": "ba69ae14a7d0973412734ff32e999995",
     "packages": [
         {
             "name": "nyholm/psr7",
@@ -1832,7 +1832,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.2",
-        "ext-dom": "*"
+        "ext-dom": "*",
+        "ext-curl": "*"
     },
     "platform-dev": []
 }
