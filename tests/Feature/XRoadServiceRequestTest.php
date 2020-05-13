@@ -16,11 +16,11 @@ final class XRoadServiceRequestTest extends TestCase
             $name = 'EE/COM/00000000/SubSys/service/v0',
             $client = 'EE/COM/00000000/SubSys',
             SecurityServerFake::serviceResponse(
-                $expected = '<stub_response></stub_response>'
+                $expected = '<stub_response/>'
             )
         );
 
-        $response = $service->request('str');
+        $response = $service->request('<stub_request/>');
 
         $this->assertXmlStringEqualsXmlString(
             $expected,
