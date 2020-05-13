@@ -4,8 +4,11 @@
 [![codecov](https://codecov.io/gh/raigu/x-road-client/branch/master/graph/badge.svg)](https://codecov.io/gh/raigu/x-road-client)
 
 
-PHP library for consuming X-Road services. Gives high-level interface for end-application yet allows to control it in low level using
-[PSR-7](https://www.php-fig.org/psr/psr-7/) and [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible interfaces.
+PHP library for consuming X-Road services. Allows end-application to operate only with service level request and 
+response and hides lower level logic (SOAP, HTTP). 
+
+The HTTP communication is done using  [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client and end-application
+can replace the client in order to listen or manipulate [PSR-7](https://www.php-fig.org/psr/psr-7/) compatible request and response.
 
 # Installation
 
@@ -72,16 +75,19 @@ The security server will throw an exception if:
 
 ## HTTP communication
 
-The HTTP communication is handed over to [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible HTTP client which 
-must be provided explicitly.
- 
-This gives more control over library. It is possible to debug, log or alter the behaviour. For example, it
- is possible to implement specific error handling, provide API key to security server in HTTP header, 
- inject test double responses for tests etc. 
+The HTTP communication is handed over to [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible HTTP client.
+To create security server instance with your PSR-18 client use factory method _\Raigu\XRoad\DefaultSecurityServer::fromPsr18Client_.
+
+```php
+\Raigu\XRoad\DefaultSecurityServer::create(
+    'https://security-server.consumer.com',
+    new Client // Any PSR-18 compatible client
+);
+```
 
 You can use any PSR-18 compatible client (for example [php-http/curl-client](https://github.com/php-http/curl-client)) 
-or create an adapter for [PSR-7](https://www.php-fig.org/psr/psr-7/) compatible library by yourself.  
-For example adapter for [Guzzle](https://github.com/guzzle/guzzle/):
+or create an adapter by yourself. For example if you have already installed [Guzzle](https://github.com/guzzle/guzzle/)
+package and want to use it then you can create an adapter for it:
 
 ```php
 class GuzzleAdapter implements \Psr\Http\Client\ClientInterface
