@@ -5,7 +5,7 @@ namespace Raigu\XRoad;
 use Exception;
 use Psr\Http\Client\ClientInterface;
 
-final class Psr18SecurityServer implements SecurityServer
+final class DefaultSecurityServer implements SecurityServer, Requestable
 {
     /**
      * @var string
@@ -15,6 +15,12 @@ final class Psr18SecurityServer implements SecurityServer
      * @var ClientInterface
      */
     private $client;
+
+    public function request(string $request): string
+    {
+        return $this->process($request)->asStr();
+    }
+
 
     public function process(string $soapEnvelope): XRoadServiceResponse
     {
@@ -40,9 +46,9 @@ final class Psr18SecurityServer implements SecurityServer
         return Psr7ResponseAsXRoadServiceResponse::create($response);
     }
 
-    public static function create(string $url, ClientInterface $client): self
+    public static function create(string $url): self
     {
-        return new self($url, $client);
+        return new self($url, new CurlPsr18Adapter);
     }
 
     private function __construct(string $url, ClientInterface $client)

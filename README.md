@@ -13,7 +13,7 @@ PHP library for consuming X-Road services. Gives high-level interface for end-ap
 composer install raigu/x-road-client
 ```
 
-# Usage 
+# Usage in PHP 
 
 You need to know the service name, client's name and client's security server.
 
@@ -22,9 +22,8 @@ You need to know the service name, client's name and client's security server.
 $service = \Raigu\XRoad\Service::create(
     $name = '/EE/COM/00000000/SubSys/service/v0',
     $client = '/EE/COM/00000000/SubSys',
-    \Raigu\XRoad\Psr18SecurityServer::create(
-        'https://security-server.consumer.com',
-        new Client
+    \Raigu\XRoad\DefaultSecurityServer::create(
+        'https://security-server.consumer.com'
     )
 );
 
@@ -41,7 +40,17 @@ EOD
 echo $response; // will output the service provider's response extracted from SOAP envelope 
 ```
 
-If you want to play with this library before using it then there is a [demo application](https://github.com/raigu/x-road-client-demo) using local X-Road test server in docker container.
+# Usage from command line
+
+There is a script for reading X-road request from STDIN, making request and printing out service response.
+
+Usage: php ./bin/request.php service client security_server_url
+
+See command help for more info:
+
+```bash
+$ php ./bin/request.php
+```
 
 # Developer documentation
 

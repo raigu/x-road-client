@@ -22,6 +22,7 @@
     "require": {
         "php": "^7.2",
         "ext-dom": "*",
+        "ext-curl": "*",
         "psr/http-message": "^1.0",
         "psr/http-client": "^1.0",
         "nyholm/psr7": "^1.2",
