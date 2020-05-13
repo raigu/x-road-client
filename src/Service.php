@@ -11,7 +11,7 @@ final class Service
      */
     private $builder;
     /**
-     * @var SecurityServer
+     * @var Requestable
      */
     private $securityServer;
 

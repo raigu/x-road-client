@@ -3,7 +3,6 @@
 namespace Raigu\Test\Feature;
 
 use Raigu\XRoad\Requestable;
-use Raigu\XRoad\XRoadServiceResponse;
 
 final class SecurityServerFake implements Requestable
 {
