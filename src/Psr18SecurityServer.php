@@ -5,7 +5,7 @@ namespace Raigu\XRoad;
 use Exception;
 use Psr\Http\Client\ClientInterface;
 
-final class Psr18XRoadSecurityServer implements XRoadSecurityServer
+final class Psr18SecurityServer implements SecurityServer
 {
     /**
      * @var string

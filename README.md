@@ -19,13 +19,14 @@ You need to know the service name, client's name and client's security server.
 
 ```php
 <?php
-$service = Service::create(
+$service = \Raigu\XRoad\Service::create(
     $name = '/EE/COM/00000000/SubSys/service/v0',
     $client = '/EE/COM/00000000/SubSys',
-    Psr18SecurityServer::create(
+    \Raigu\XRoad\Psr18SecurityServer::create(
         'https://security-server.consumer.com',
         new Client
-    ));
+    )
+);
 
 $response = $service->request(<<<EOD
     <prod:testService xmlns:prod="http://test.x-road.fi/producer">

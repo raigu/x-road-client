@@ -9,7 +9,7 @@ namespace Raigu\XRoad;
  * X-Road SOAP requests, route it to service provider
  * and return the service provider's response.
  */
-interface XRoadSecurityServer
+interface SecurityServer
 {
     public function soapRequest(string $envelope): string;
 

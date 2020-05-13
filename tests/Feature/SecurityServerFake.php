@@ -2,10 +2,10 @@
 
 namespace Raigu\Test\Feature;
 
-use Raigu\XRoad\XRoadSecurityServer;
+use Raigu\XRoad\SecurityServer;
 use Raigu\XRoad\XRoadServiceResponse;
 
-final class SecurityServerFake implements XRoadSecurityServer
+final class SecurityServerFake implements SecurityServer
 {
     /**
      * @var string

@@ -2,14 +2,14 @@
 
 namespace Raigu\XRoad;
 
-final class XRoadService
+final class Service
 {
     /**
      * @var SoapEnvelopeBuilder
      */
     private $builder;
     /**
-     * @var XRoadSecurityServer
+     * @var SecurityServer
      */
     private $securityServer;
 
@@ -25,7 +25,7 @@ final class XRoadService
             ->asStr();
     }
 
-    public static function create(string $name, string $client, XRoadSecurityServer $securityServer): self
+    public static function create(string $name, string $client, SecurityServer $securityServer): self
     {
         return new self(
             SoapEnvelopeBuilder::create()
@@ -35,7 +35,7 @@ final class XRoadService
         );
     }
 
-    private function __construct(SoapEnvelopeBuilder $builder, XRoadSecurityServer $securityServer)
+    private function __construct(SoapEnvelopeBuilder $builder, SecurityServer $securityServer)
     {
         $this->builder = $builder;
         $this->securityServer = $securityServer;

@@ -5,7 +5,7 @@ namespace Raigu\Test\Feature;
 use PHPUnit\Framework\TestCase;
 use Raigu\Test\Unit\HttpClientFake;
 use Raigu\Test\Unit\HttpClientStub;
-use Raigu\XRoad\Psr18XRoadSecurityServer;
+use Raigu\XRoad\Psr18SecurityServer;
 use Raigu\XRoad\SoapEnvelopeBuilder;
 
 class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
@@ -18,7 +18,7 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
         $envelope = SoapEnvelopeBuilder::stub()
             ->build();
 
-        $securityServer = Psr18XRoadSecurityServer::create(
+        $securityServer = Psr18SecurityServer::create(
             'http://test.ee',
             new HttpClientStub
         );
@@ -34,7 +34,7 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
      */
     public function throws_exception_if_security_server_returns_none_HTTP_success()
     {
-        $securityServer = Psr18XRoadSecurityServer::create(
+        $securityServer = Psr18SecurityServer::create(
             'http://test.ee',
             HttpClientFake::rawResponse(
                 "HTTP/1.1 532 Stub Error"
@@ -66,7 +66,7 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
             "   </SOAP-ENV:Body>" .
             "</SOAP-ENV:Envelope>";
 
-        $securityServer = Psr18XRoadSecurityServer::create(
+        $securityServer = Psr18SecurityServer::create(
             'http://test.ee',
             HttpClientFake::rawResponse($response)
         );
