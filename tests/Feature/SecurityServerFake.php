@@ -2,24 +2,19 @@
 
 namespace Raigu\Test\Feature;
 
-use Raigu\XRoad\SecurityServer;
+use Raigu\XRoad\Requestable;
 use Raigu\XRoad\XRoadServiceResponse;
 
-final class SecurityServerFake implements SecurityServer
+final class SecurityServerFake implements Requestable
 {
     /**
      * @var string
      */
     private $responseEnvelope;
 
-    public function soapRequest(string $envelope): string
+    public function request(string $request): string
     {
         return $this->responseEnvelope;
-    }
-
-    public function process(string $soapEnvelope): XRoadServiceResponse
-    {
-
     }
 
     public static function serviceResponse(string $serviceResponse): self

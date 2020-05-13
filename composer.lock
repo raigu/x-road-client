@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "90ad82c1b5672e3d684361696e449d27",
+    "content-hash": "2217c328a9ec023ec45354e4a7f0ac13",
     "packages": [
         {
             "name": "nyholm/psr7",
@@ -271,16 +271,16 @@
         },
         {
             "name": "raigu/x-road-soap-envelope-builder",
-            "version": "v0.2.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/raigu/x-road-soap-envelope-builder.git",
-                "reference": "c978a497b4a979890bd3bfa93967834d1cd3c743"
+                "reference": "21d2c5d6299ac109553722927725cde5933a817c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raigu/x-road-soap-envelope-builder/zipball/c978a497b4a979890bd3bfa93967834d1cd3c743",
-                "reference": "c978a497b4a979890bd3bfa93967834d1cd3c743",
+                "url": "https://api.github.com/repos/raigu/x-road-soap-envelope-builder/zipball/21d2c5d6299ac109553722927725cde5933a817c",
+                "reference": "21d2c5d6299ac109553722927725cde5933a817c",
                 "shasum": ""
             },
             "require": {
@@ -293,7 +293,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Raigu\\XRoad\\": "src/"
+                    "Raigu\\XRoad\\SoapEnvelope\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -307,7 +307,7 @@
                 }
             ],
             "description": "PHP library for generating X-Road SOAP envelope.",
-            "time": "2020-04-28T10:39:33+00:00"
+            "time": "2020-05-13T07:46:36+00:00"
         }
     ],
     "packages-dev": [
@@ -1680,16 +1680,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.15.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "4719fa9c18b0464d399f1a63bf624b42b6fa8d14"
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/4719fa9c18b0464d399f1a63bf624b42b6fa8d14",
-                "reference": "4719fa9c18b0464d399f1a63bf624b42b6fa8d14",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
                 "shasum": ""
             },
             "require": {
@@ -1701,7 +1701,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -1734,7 +1734,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2020-02-27T09:26:54+00:00"
+            "time": "2020-05-12T16:14:59+00:00"
         },
         {
             "name": "theseer/tokenizer",

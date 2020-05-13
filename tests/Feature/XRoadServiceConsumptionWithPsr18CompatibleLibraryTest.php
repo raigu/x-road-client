@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Raigu\Test\Unit\HttpClientFake;
 use Raigu\Test\Unit\HttpClientStub;
 use Raigu\XRoad\Psr18SecurityServer;
-use Raigu\XRoad\SoapEnvelopeBuilder;
+use Raigu\XRoad\SoapEnvelope\SoapEnvelopeBuilder;
 
 class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
 {
