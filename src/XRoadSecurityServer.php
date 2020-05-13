@@ -11,6 +11,7 @@ namespace Raigu\XRoad;
  */
 interface XRoadSecurityServer
 {
+    public function soapRequest(string $envelope): string;
 
     public function process(string $soapEnvelope): XRoadServiceResponse;
 }
