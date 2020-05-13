@@ -1,32 +1,29 @@
 <?php
 
-namespace Raigu\Test\Feature;
+namespace Raigu\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Raigu\Test\Unit\HttpClientFake;
-use Raigu\Test\Unit\HttpClientStub;
 use Raigu\XRoad\DefaultSecurityServer;
-use Raigu\XRoad\SoapEnvelope\SoapEnvelopeBuilder;
 
-class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
+class SecurityServerTest extends TestCase
 {
     /**
      * @test
      */
     public function end_application_can_consume_X_Road_service()
     {
-        $envelope = SoapEnvelopeBuilder::stub()
-            ->build();
-
-        $securityServer = DefaultSecurityServer::create(
+        $securityServer = DefaultSecurityServer::overPsr18Client(
             'http://test.ee',
-            new HttpClientStub
+            $spy = HttpClientSpy::wrap(
+                new HttpClientStub
+            )
         );
 
+        $securityServer->request('');
 
-        $response = $securityServer->process($envelope);
-
-        $this->assertIsString($response->asStr());
+        $this->assertTrue(
+            $spy->called()
+        );
     }
 
     /**
@@ -34,7 +31,7 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
      */
     public function throws_exception_if_security_server_returns_none_HTTP_success()
     {
-        $securityServer = DefaultSecurityServer::create(
+        $securityServer = DefaultSecurityServer::overPsr18Client(
             'http://test.ee',
             HttpClientFake::rawResponse(
                 "HTTP/1.1 532 Stub Error"
@@ -43,7 +40,7 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
 
         $this->expectExceptionMessage('532');
 
-        $securityServer->process('');
+        $securityServer->request('');
     }
 
     /**
@@ -66,7 +63,7 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
             "   </SOAP-ENV:Body>" .
             "</SOAP-ENV:Envelope>";
 
-        $securityServer = DefaultSecurityServer::create(
+        $securityServer = DefaultSecurityServer::overPsr18Client(
             'http://test.ee',
             HttpClientFake::rawResponse($response)
         );
@@ -74,6 +71,6 @@ class XRoadServiceConsumptionWithPsr18CompatibleLibraryTest extends TestCase
         $this->expectExceptionMessage('MustUnderstand');
         $this->expectExceptionMessage('SOAP Must Understand Error');
 
-        $securityServer->process('');
+        $securityServer->request('');
     }
 }

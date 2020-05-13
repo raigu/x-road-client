@@ -5,7 +5,10 @@ namespace Raigu\XRoad;
 use Exception;
 use Psr\Http\Client\ClientInterface;
 
-final class DefaultSecurityServer implements SecurityServer, Requestable
+/**
+ * I am a default implementation for security server
+ */
+final class DefaultSecurityServer implements Requestable
 {
     /**
      * @var string
@@ -18,16 +21,10 @@ final class DefaultSecurityServer implements SecurityServer, Requestable
 
     public function request(string $request): string
     {
-        return $this->process($request)->asStr();
-    }
-
-
-    public function process(string $soapEnvelope): XRoadServiceResponse
-    {
         $factory = Psr7RequestFactory::default();
         $request = $factory->fromSoapEnvelope(
             $this->url,
-            $soapEnvelope
+            $request
         );
 
         $response = $this->client->sendRequest($request);
@@ -43,7 +40,12 @@ final class DefaultSecurityServer implements SecurityServer, Requestable
             );
         }
 
-        return Psr7ResponseAsXRoadServiceResponse::create($response);
+        return Psr7ResponseAsXRoadServiceResponse::create($response)->asStr();
+    }
+
+    public static function overPsr18Client(string $url, ClientInterface $client)
+    {
+        return new self($url, $client);
     }
 
     public static function create(string $url): self
