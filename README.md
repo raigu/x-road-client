@@ -7,8 +7,8 @@
 PHP library for consuming X-Road services. Allows end-application to operate only with service level request and 
 response and hides lower level logic (SOAP, HTTP). 
 
-The HTTP communication is done using  [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client and end-application
-can replace the client in order to listen or manipulate [PSR-7](https://www.php-fig.org/psr/psr-7/) compatible request and response.
+The HTTP communication uses [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client and end-application
+can replace it in order to have full control over the HTTP communication.
 
 # Installation
 
