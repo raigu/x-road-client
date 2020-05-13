@@ -4,12 +4,8 @@
 [![codecov](https://codecov.io/gh/raigu/x-road-client/branch/master/graph/badge.svg)](https://codecov.io/gh/raigu/x-road-client)
 
 
-PHP library for consuming X-Road services using third-party HTTP [PSR-18](https://www.php-fig.org/psr/psr-18/) 
-or [PSR-7](https://www.php-fig.org/psr/psr-7/) compatible libraries.
-
-The purpose of this library is to help client application in X-Road request construction, 
-communicating with security server, extracting actual service provider response from SOAP message 
-and error detection. 
+PHP library for consuming X-Road services. Gives high-level interface for end-application yet allows to control it in low level using
+[PSR-7](https://www.php-fig.org/psr/psr-7/) and [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible interfaces.
 
 # Installation
 
@@ -17,33 +13,31 @@ and error detection.
 composer install raigu/x-road-client
 ```
 
-# Usage
+# Usage 
+
+You need to know the service name, client's name and client's security server.
 
 ```php
 <?php
+$service = Service::create(
+    $name = '/EE/COM/00000000/SubSys/service/v0',
+    $client = '/EE/COM/00000000/SubSys',
+    Psr18SecurityServer::create(
+        'https://security-server.consumer.com',
+        new Client
+    ));
 
-$builder = \Raigu\XRoad\SoapEnvelopeBuilder::create()
-    ->withService('EE/GOV/70008440/rr/RR437/v1')
-    ->withClient('EE/COM/12213008/gathering')
-    ->withBody(<<<EOD
-        <prod:RR437 xmlns:prod="http://rr.x-road.eu/producer">
-            <request>
-                <Isikukood>00000000000</Isikukood>
-            </request>
-        </prod:RR437>
+$response = $service->request(<<<EOD
+    <prod:testService xmlns:prod="http://test.x-road.fi/producer">
+        <request>
+            <responseBodySize>5</responseBodySize>
+            <responseAttachmentSize>0</responseAttachmentSize>
+         </request>
+    </prod:testService>
 EOD
-    );
-
-$envelope = $builder->build();
-
-$securityServer = \Raigu\XRoad\Psr18XRoadSecurityServer::create(
-    'http://x-road.security.server.company.com', // URL of your X-Road Security Server
-    new Client // Any PSR-8 compatible HTTP client. Must be installed or implemented separately.
 );
 
-$response = $securityServer->process($envelope);
-
-echo $response->asStr();
+echo $response; // will output the service provider's response extracted from SOAP envelope 
 ```
 
 If you want to play with this library before using it then there is a [demo application](https://github.com/raigu/x-road-client-demo) using local X-Road test server in docker container.
