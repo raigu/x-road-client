@@ -56,8 +56,8 @@ WSDL can be downloaded from [X-Road catalog](https://x-tee.ee/catalogue/EE). Use
 ## Error Handling
 
 The `Service` will throw an exception if:
-* actual security server returns HTTP response with status code other than 2xx
-* actual security server response contains SOAP Fault.
+* received response with status code other than 2xx
+* received SOAP Fault.
 * other communication problem
 
 ## HTTP Communication
