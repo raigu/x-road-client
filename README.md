@@ -4,10 +4,13 @@
 [![codecov](https://codecov.io/gh/raigu/x-road-client/branch/master/graph/badge.svg)](https://codecov.io/gh/raigu/x-road-client)
 
 
-PHP library for consuming X-Road services. It exposes service level logic and hides low level logic (SOAP, HTTP).
+PHP library for consuming X-Road services. 
 
-The HTTP communication uses [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client.
-Client can be replaced in case full control over HTTP communication is needed.
+It exposes service level request and response to the end application and hides low level logic (SOAP, HTTP).
+
+The HTTP communication uses [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client which must be installed separately.
+This approach gives full control over HTTP layer if needed.
+
 
 # Installation
 
@@ -17,15 +20,13 @@ composer install raigu/x-road-client
 
 # Usage 
 
-You need to know the service name, client name, the URL of client's security and a [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client.
-
 ```php
 <?php
 $service = \Raigu\XRoad\Service::create(
-    $name = 'EE/COM/00000000/SubSys/Service/v0',
-    $client = 'EE/COM/00000000/SubSys',
+    'EE/COM/00000000/SubSys/Service/v0', // service name
+    'EE/COM/00000000/SubSys', // client name
     \Raigu\XRoad\SecurityServer::create(
-        'https://security-server.client.com',
+        'https://security-server.client.com', // client's security server
         new Client // Any PSR-18 compatible client.    
     )
 );
@@ -48,7 +49,7 @@ echo $response; // will output the service provider's response extracted from SO
 ## Service Request
 
 Service request can be made based on WSDL using tools like [Anayze WSDL](https://www.wsdl-analyzer.com/) or [SoapUI](https://www.soapui.org/).
-See [video](https://www.youtube.com/watch?v=ziQIwlTtPLA) how to do it.
+See [video](https://www.youtube.com/watch?v=ziQIwlTtPLA) how to create one.
 
 WSDL can be downloaded from [X-Road catalog](https://x-tee.ee/catalogue/EE). Use service name to look it up.
 
@@ -61,7 +62,7 @@ The `Service` will throw an exception if:
 
 ## HTTP Communication
 
-If you have a client that is not [PSR-18](https://www.php-fig.org/psr/psr-18/)  compatible but can handle PSR-7 request and response then you 
+If you have a client which is not [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible but can handle PSR-7 request and response then you 
 can write an adapter. For example if you have already installed [Guzzle](https://github.com/guzzle/guzzle/)
 package and want to re-use it then you can create an adapter like this:
 
@@ -87,7 +88,7 @@ class GuzzleAdapter implements \Psr\Http\Client\ClientInterface
 
 # Demo 
 
-You can set up local X-Road test server in docker and check this library out.
+One way to check this library out is to set up local X-Road test server in docker and make a test request.
 
 Install library locally.
 
@@ -117,7 +118,7 @@ $service = \Raigu\XRoad\Service::create(
     $name = 'NIIS-TEST/GOV/0245437-2/TestService/testService/v1',
     $client = 'NIIS-TEST/GOV/123456-7/testClient',
     \Raigu\XRoad\SecurityServer::create(
-        'http://localhost:8080/test-service-0.0.3/Endpoint',
+        'http://localhost:8080/test-service-0.0.3/Endpoint', // Win users: use your ip. Execute "docker-machine ip"
         new Http\Client\Curl\Client
     )
 );
