@@ -43,14 +43,9 @@ final class SecurityServer implements Requestable
         return Psr7ResponseAsXRoadServiceResponse::create($response)->asStr();
     }
 
-    public static function overPsr18Client(string $url, ClientInterface $client)
+    public static function create(string $url, ClientInterface $client)
     {
         return new self($url, $client);
-    }
-
-    public static function create(string $url): self
-    {
-        return new self($url, new CurlPsr18Adapter);
     }
 
     private function __construct(string $url, ClientInterface $client)
