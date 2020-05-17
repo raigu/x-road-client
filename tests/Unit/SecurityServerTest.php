@@ -3,7 +3,7 @@
 namespace Raigu\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Raigu\XRoad\DefaultSecurityServer;
+use Raigu\XRoad\SecurityServer;
 
 class SecurityServerTest extends TestCase
 {
@@ -12,7 +12,7 @@ class SecurityServerTest extends TestCase
      */
     public function end_application_can_consume_X_Road_service()
     {
-        $securityServer = DefaultSecurityServer::overPsr18Client(
+        $securityServer = SecurityServer::overPsr18Client(
             'http://test.ee',
             $spy = HttpClientSpy::wrap(
                 new HttpClientStub
@@ -31,7 +31,7 @@ class SecurityServerTest extends TestCase
      */
     public function throws_exception_if_security_server_returns_none_HTTP_success()
     {
-        $securityServer = DefaultSecurityServer::overPsr18Client(
+        $securityServer = SecurityServer::overPsr18Client(
             'http://test.ee',
             HttpClientFake::rawResponse(
                 "HTTP/1.1 532 Stub Error"
@@ -63,7 +63,7 @@ class SecurityServerTest extends TestCase
             "   </SOAP-ENV:Body>" .
             "</SOAP-ENV:Envelope>";
 
-        $securityServer = DefaultSecurityServer::overPsr18Client(
+        $securityServer = SecurityServer::overPsr18Client(
             'http://test.ee',
             HttpClientFake::rawResponse($response)
         );

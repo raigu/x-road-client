@@ -24,7 +24,7 @@ You need to know the service name, client's name and URL of client's security.
 $service = \Raigu\XRoad\Service::create(
     $name = 'EE/COM/00000000/SubSys/Service/v0',
     $client = 'EE/COM/00000000/SubSys',
-    \Raigu\XRoad\DefaultSecurityServer::create(
+    \Raigu\XRoad\SecurityServer::create(
         'https://security-server.client.com'
     )
 );

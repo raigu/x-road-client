@@ -8,7 +8,7 @@ use Psr\Http\Client\ClientInterface;
 /**
  * I am a default implementation for security server
  */
-final class DefaultSecurityServer implements Requestable
+final class SecurityServer implements Requestable
 {
     /**
      * @var string

@@ -20,7 +20,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $service = \Raigu\XRoad\Service::create(
     $argv[1],
     $argv[2],
-    \Raigu\XRoad\DefaultSecurityServer::create(
+    \Raigu\XRoad\SecurityServer::create(
         $argv[3]
     )
 );
