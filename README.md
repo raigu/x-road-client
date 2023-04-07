@@ -11,6 +11,11 @@ It exposes service level request and response to the end application and hides l
 The HTTP communication uses [PSR-18](https://www.php-fig.org/psr/psr-18/) compatible client which must be installed separately.
 This approach gives full control over HTTP layer if needed.
 
+# Compatibility
+
+PHP ^8.0
+
+(For PHP ^7.2 use version 0.1.0)
 
 # Installation
 
