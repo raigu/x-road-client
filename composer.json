@@ -34,5 +34,10 @@
     "scripts": {
         "coverage": "vendor/bin/phpunit --coverage-text",
         "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "platform": {
+            "php": "8.0.0"
+        }
     }
 }
